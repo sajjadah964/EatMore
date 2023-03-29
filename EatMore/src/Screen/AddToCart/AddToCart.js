@@ -125,7 +125,8 @@ export default AddToCart
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingHorizontal: moderateScale(26)
+        paddingHorizontal: moderateScale(26),
+        backgroundColor: '#FEFEFE'
     },
     headerImgStyle: {
         tintColor: Colors.black

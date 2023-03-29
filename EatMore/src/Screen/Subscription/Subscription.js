@@ -120,7 +120,8 @@ const Subscription = () => {
                             ItemSeparatorComponent={FlatListItemSeparator}
                             contentContainerStyle={{ alignItems: 'center' }} // add this line
                         />
-                    </View> : null
+                    </View> 
+                    : null
                 }
                 {selectedIndex === '2' ?
                     <View>
@@ -149,7 +150,8 @@ export default Subscription;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingHorizontal: moderateScale(26)
+        paddingHorizontal: moderateScale(26),
+        backgroundColor: '#FEFEFE'
     },
     btnStyle: {
         width: moderateScale(200),
@@ -173,6 +175,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
     },
     itemListView: {
+        // flex:1,
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: moderateVerticalScale(25),

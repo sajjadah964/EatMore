@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingHorizontal: moderateScale(26),
+        backgroundColor: '#FEFEFE'
     },
     labelTextStyle: {
         color: 'rgba(0, 0, 0, 0.5)'

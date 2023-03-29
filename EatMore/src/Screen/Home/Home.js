@@ -10,7 +10,7 @@ import NavigationStrings from '../../constants/NavigationStrings';
 import { useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
 
-let gapWidth = 15;
+let gapWidth = 0;
 const numColumns = 2;
 const Home = () => {
     const navigation = useNavigation()
@@ -25,6 +25,12 @@ const Home = () => {
             return { backgroundColor: '#7E58F4', };
         }
     }
+    const onFocus = () => {
+        setIsFocused(true)
+        return (
+            { backgroundColor: 'red', paddingHorizontal: 20 }
+        )
+    }
     const renderItem = ({ item, index }) => {
         // console.log(item)
         console.log(index)
@@ -36,8 +42,15 @@ const Home = () => {
                     onPress={() => onItemPress(index)}
                     activeOpacity={0.8}
                 >
-                    <View>
+                    <View style={{
+                        width: moderateScale(60),
+                        height: moderateScale(60),
+                    }}>
                         <Image
+                            style={{
+                                width: moderateScale(60),
+                                height: moderateScale(60),
+                            }}
                             source={item.url}
                         />
                     </View>
@@ -62,7 +75,8 @@ const Home = () => {
     const topItemList = ({ item, index }) => {
         console.log(item, 'top item list')
         return (
-            <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }}
+            <TouchableOpacity
+                style={[styles.mainTopItemView, (index + 1) % 2 === 0 ? { marginRight: 0 } : null]}
                 onPress={() => goToDetails(item, index)}
                 activeOpacity={0.7}
             >
@@ -81,7 +95,7 @@ const Home = () => {
                         <View style={styles.itemPriceDetail}>
                             <Text style={styles.itemPriceStyle}>Rs.{item.itemPrice}</Text>
                             <Animatable.Image
-                            source={item.plusIcon}
+                                source={item.plusIcon}
                             />
                         </View>
                     </View>
@@ -97,7 +111,7 @@ const Home = () => {
                         <Text style={styles.headerTitleStyle}>Menu</Text>
                     </View>
                     <TouchableOpacity
-                    onPress={()=>alert('logout')}
+                        onPress={() => alert('logout')}
                     >
                         <Image
                             source={imagePath.icUserProfileLogo}
@@ -109,14 +123,18 @@ const Home = () => {
                     <TextInputWithLabel
                         placeHolder='Search'
                         placeholderTextColor="gray"
-                        placeholderStyle={{ fontSize:scale(20)}}
-                        inputStyle={{ ...styles.inputSearchStyle }}
+                        inputStyle={{ ...styles.inputSearchStyle, }}
                         keyboardType="web-search"
                         searchIcon={isFocused ? null : imagePath.icSearchItem}
-                        onFocus={() => setIsFocused(true)}
+                        onFocus={() => onFocus()}
                         onBlur={() => setIsFocused(false)}
-
-                    />
+                        // style={isFocused ? {paddingHorizontal : 20} :inputSearchStyle}
+                        style={[
+                            styles.inputSearchStyle,
+                            { fontSize: scale(18), paddingHorizontal: isFocused ? moderateScale(20) : 0, paddingLeft: moderateScale(8) }
+                        ]}
+                    >
+                    </TextInputWithLabel>
                 </View>
 
                 <View
@@ -136,6 +154,7 @@ const Home = () => {
                     style={styles.topItemViewStyle}
                 >
                     <Text style={styles.topItemListHeading}>Top Items</Text>
+
                     <FlatList
                         data={TopItemList}
                         renderItem={topItemList}
@@ -143,9 +162,13 @@ const Home = () => {
                         numColumns={numColumns}
                         scrollEnabled={true}
                         showsVerticalScrollIndicator={false}
-                        // style={{ marginHorizontal: gapWidth }}
-                        // contentContainerStyle={styles.gapStyle}
-                        ItemSeparatorComponent={() => <View style={{ marginBottom: moderateScale(8) }} />}
+                        ItemSeparatorComponent={() => <View
+                            style={{
+                                marginBottom: moderateVerticalScale(15),
+                                // alignItems:'center',
+
+                            }}
+                        />}
                     />
                 </View>
 
@@ -158,10 +181,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingHorizontal: moderateScale(26),
+        backgroundColor: '#FEFEFE'
     },
-    // gapStyle :{
-    //     marginHorizontal: gapWidth,
-    // },
     homeHeaderView: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -184,7 +205,10 @@ const styles = StyleSheet.create({
         borderRadius: moderateScale(30),
         backgroundColor: '#F2EFFF',
         borderBottomWidth: 0,
-        // backgroundColor:'red'
+        // alignItems:'center',
+        // textAlignVertical: 'center',
+        paddingTop: 0, // remove default padding
+        paddingBottom: 0, // remove default padding
     },
     categoriesViewStyle: {
         marginBottom: moderateVerticalScale(10)
@@ -200,18 +224,27 @@ const styles = StyleSheet.create({
         backgroundColor: '#D9D9D9',
         width: moderateScale(76),
         height: moderateScale(75),
-        borderRadius: moderateScale(10)
+        borderRadius: moderateScale(10),
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-    singleItem: {
-        width: `${190 / numColumns}%`,
-        height: moderateScale(180),
-        borderRadius: moderateScale(15),
-        backgroundColor: '#D9D9D9',
-        paddingVertical:moderateVerticalScale(15),
-        // backgroundColor:'red'
+    mainTopItemView: {
+        flex: 1,
+        flexDirection: 'row',
+        marginRight: moderateScale(15),
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     topItemViewStyle: {
-        flex: 1
+        flex: 1,
+        // backgroundColor: 'red',
+    },
+    singleItem: {
+        width: '100%',
+        height: '100%',
+        borderRadius: moderateScale(15),
+        backgroundColor: '#D9D9D9',
+        paddingVertical: moderateVerticalScale(20),
     },
     topItemListHeading: {
         fontSize: scale(24),
@@ -220,17 +253,17 @@ const styles = StyleSheet.create({
         color: Colors.black,
         marginBottom: moderateVerticalScale(14),
     },
-    itemPriceDetail:{
-        display:'flex',
-        flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems:'center',
+    itemPriceDetail: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     itemNameStyle: {
         fontSize: scale(15),
         fontWeight: '400',
         color: Colors.black,
-       marginBottom:moderateVerticalScale(10)
+        marginBottom: moderateVerticalScale(10)
     },
     itemPriceStyle: {
         fontSize: scale(15),
