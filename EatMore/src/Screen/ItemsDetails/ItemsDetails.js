@@ -34,7 +34,7 @@ const ItemsDetails = (props) => {
             {/* <StatusBar backgroundColor='#009387' barStyle="light-content" /> */}
             <View style={{ paddingHorizontal: moderateScale(26) }}>
                 <CustomHeader
-                 leftImg={imagePath.icBack}
+                    leftImg={imagePath.icBack}
                 />
             </View>
             <View style={styles.header}>
@@ -88,12 +88,14 @@ const ItemsDetails = (props) => {
                             />
                         </TouchableOpacity>
                     </View>
-                    <CustomPkgBtn
-                        onPress={() => { moveToScreen(NavigationStrings.CART_STACK) }}
-                        textStyle={{ ...styles.textStyle }}
-                        btnStyle={{ ...styles.btnStyle }}
-                        btnText={'Add to Cart'}
-                    />
+                    <View>
+                        <CustomPkgBtn
+                            onPress={() => { moveToScreen(NavigationStrings.CART_STACK) }}
+                            textStyle={{ ...styles.textStyle }}
+                            btnStyle={{ ...styles.btnStyle }}
+                            btnText={'Add to Cart'}
+                        />
+                    </View>
                 </View>
             </Animatable.View>
         </View>
@@ -117,7 +119,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         borderTopLeftRadius: moderateScale(30),
-        borderTopRightRadius:moderateScale(30),
+        borderTopRightRadius: moderateScale(30),
         paddingVertical: moderateVerticalScale(50),
         paddingHorizontal: moderateScale(30)
     },
@@ -137,10 +139,12 @@ const styles = StyleSheet.create({
         fontSize: scale(20)
     },
     button: {
+        flex:1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginTop: moderateVerticalScale(40),
-        alignItems: 'center',
+        // alignItems: 'center',
+        // backgroundColor: 'red'
     },
     CounterView: {
         flexDirection: 'row',
@@ -148,15 +152,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     btnStyle: {
+        // flex:1,
         width: moderateScale(150),
         height: moderateScale(45),
         backgroundColor: Colors.primaryColor,
-        borderRadius: 42,
-        justifyContent: 'center',
+        borderRadius:moderateScale(42),
         borderColor: Colors.primaryColor,
-        borderWidth: 1,
+        borderWidth:moderateScale(1),
         backgroundColor: Colors.white,
-        // marginTop: verticalScale(10)
+        // marginTop: moderateVerticalScale(20)
     },
     textStyle: {
         fontWeight: 400,
