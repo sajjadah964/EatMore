@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
-import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import { scale, moderateVerticalScale, moderateScale } from 'react-native-size-matters';
 import fontFamily from '../styles/fontFamily';
 
 const CustomPkgBtn = ({
@@ -29,11 +29,11 @@ const styles = StyleSheet.create({
     },
     btnStyle: {
         width: moderateScale(300),
-        height: verticalScale(45),
+        height: moderateScale(45),
         borderRadius: moderateScale(270 / 2),
         backgroundColor: '#fff',
         alignItems: 'center',
-        marginBottom: verticalScale(15),
+        marginBottom: moderateVerticalScale(15),
         justifyContent:'center',
     },
     textStyle: {

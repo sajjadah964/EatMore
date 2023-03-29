@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, View, Text, TouchableOpacity } from 'react-native';
 import CustomPkgBtn from '../components/CustomPkgBtn';
-import { moderateScale, verticalScale, scale } from 'react-native-size-matters';
+import { moderateScale, moderateVerticalScale, scale } from 'react-native-size-matters';
 import Colors from '../styles/Colors';
 
 const CustomModal = ({
@@ -45,7 +45,7 @@ const styles = {
     },
     modalView: {
         width: moderateScale(300),
-        height: verticalScale(400),
+        height: moderateScale(400),
         borderRadius: moderateScale(37),
         backgroundColor: Colors.white,
         padding: moderateScale(20),

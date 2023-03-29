@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Image, SafeAreaView, StyleSheet, Text, View, Modal, Button, TouchableOpacity } from 'react-native'
 import CustomHeader from '../../components/CustomHeader'
 import Colors from '../../styles/Colors'
-import { moderateScale, verticalScale, scale } from 'react-native-size-matters'
+import { moderateScale, moderateVerticalScale, scale } from 'react-native-size-matters'
 import TextInputWithLabel from '../../components/TextinputWithLable'
 import imagePath from '../../constants/imagePath'
 import CustomPkgBtn from '../../components/CustomPkgBtn';
@@ -91,7 +91,7 @@ const Checkout = () => {
                             <Text style={styles.singleContentText}>1x Chicken Burger</Text>
                             <Text style={styles.singleContentText}>300</Text>
                         </View>
-                        <View style={[styles.singleContent, { marginBottom: verticalScale(15) }]}>
+                        <View style={[styles.singleContent, { marginBottom: moderateVerticalScale(15) }]}>
                             <Text style={styles.singleContentText}>Delivery Fee</Text>
                             <Text style={styles.singleContentText}>50</Text>
                         </View>
@@ -123,14 +123,14 @@ const styles = StyleSheet.create({
     },
     inputStyle: {
         borderBottomWidth: 0,
-        width: moderateScale(300),
-        height: verticalScale(60),
+        width: '100%',
+        height: moderateScale(60),
         backgroundColor: '#EFEDED',
         borderRadius: moderateScale(8),
-        marginBottom: verticalScale(15),
+        marginBottom: moderateVerticalScale(15),
     },
     inlineInputStyle: {
-        paddingHorizontal: verticalScale(16),
+        paddingHorizontal: moderateScale(16),
         fontSize: scale(16),
         color: 'rgba(0, 0, 0, 0.5)'
     },
@@ -138,12 +138,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        width: moderateScale(300),
-        height: verticalScale(60),
+        width: '100%',
+        height: moderateScale(60),
         backgroundColor: '#EFEDED',
         borderRadius: moderateScale(8),
-        paddingHorizontal: verticalScale(16),
-        marginBottom: verticalScale(30),
+        paddingHorizontal: moderateScale(16),
+        marginBottom: moderateVerticalScale(30),
     },
     paymentMethodText: {
         fontStyle: 'normal',
@@ -151,14 +151,14 @@ const styles = StyleSheet.create({
         fontSize: scale(16),
     },
     orderSummaryView: {
-        marginBottom: verticalScale(23),
+        marginBottom: moderateVerticalScale(23),
     },
     orderSummaryContent: {
         width: moderateScale(300),
-        height: verticalScale(120),
+        height: moderateScale(120),
         backgroundColor: '#EFEDED',
         borderRadius: moderateScale(8),
-        paddingHorizontal: verticalScale(16),
+        paddingHorizontal: moderateVerticalScale(16),
         justifyContent: 'center',
     },
     singleContent: {
@@ -173,14 +173,14 @@ const styles = StyleSheet.create({
     orderSummaryLabel: {
         fontSize: scale(16),
         fontWeight: '600',
-        marginBottom: verticalScale(16),
+        marginBottom: moderateVerticalScale(16),
         color: Colors.black
     },
     btnStyle: {
         width: moderateScale(200),
-        height: verticalScale(48),
+        height: moderateScale(48),
         backgroundColor: '#50379E',
-        marginTop: verticalScale(26),
+        marginTop: moderateVerticalScale(26),
     },
 })
 

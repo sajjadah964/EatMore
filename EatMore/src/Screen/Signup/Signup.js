@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Image, TouchableOpacity } from 'react-native'
-import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
+import { moderateScale, scale, moderateVerticalScale } from 'react-native-size-matters';
 import CustomPkgBtn from '../../components/CustomPkgBtn';
 import imagePath from '../../constants/imagePath';
 import Colors from '../../styles/Colors';
@@ -44,7 +44,7 @@ const Signup = ({ navigation }) => {
                     alignItems: 'center',
                 }}>
                     <View style={styles.formView}>
-                        <View style={{ marginTop: verticalScale(40) }}>
+                        <View style={{ marginTop: moderateVerticalScale(40) }}>
                             <CustomPkgBtn
                                 textStyle={{ ...styles.textStyle }}
                                 btnStyle={{ ...styles.btnStyle }}
@@ -53,7 +53,7 @@ const Signup = ({ navigation }) => {
                         </View>
                         <TextInputWithLabel
                             placeHolder='Enter Email'
-                            inputStyle={{ marginBottom: verticalScale(10) }}
+                            inputStyle={{ marginBottom: moderateVerticalScale(10) }}
                             keyboardType="email-address"
                         />
                         <TextInputWithLabel
@@ -61,7 +61,7 @@ const Signup = ({ navigation }) => {
                             secureTextEntry={isVisible}
                             rightIcon={isVisible ? imagePath.icHide : imagePath.icShow}
                             onPressRight={() => setVisible(!isVisible)}
-                            inputStyle={{ marginBottom: verticalScale(14) }}
+                            inputStyle={{ marginBottom: moderateVerticalScale(14) }}
                         />
 
                         <TextInputWithLabel
@@ -69,7 +69,7 @@ const Signup = ({ navigation }) => {
                             secureTextEntry={CVisible}
                             rightIcon={CVisible ? imagePath.icHide : imagePath.icShow}
                             onPressRight={() => setCVisible(!CVisible)}
-                            inputStyle={{ marginBottom: verticalScale(14) }}
+                            inputStyle={{ marginBottom: moderateVerticalScale(14) }}
                         />
 
                         <TouchableOpacity activeOpacity={0.7} style={styles.forgotPassView}>
@@ -102,7 +102,7 @@ const Signup = ({ navigation }) => {
 const styles = StyleSheet.create({
     eatmoreLogo: {
         // flex: 1,
-        height: verticalScale(350),
+        height: moderateScale(350),
         backgroundColor: Colors.primaryColor,
         borderBottomLeftRadius: moderateScale(80),
         borderBottomRightRadius: moderateScale(80),
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     formView: {
         backgroundColor: Colors.white,
         width: moderateScale(300),
-        height: verticalScale(440),
+        height: moderateScale(440),
         borderRadius: moderateScale(39),
         borderWidth: 1,
         borderColor: 'rgba(71, 45, 156, 0.8)',
@@ -121,12 +121,12 @@ const styles = StyleSheet.create({
         // alignItems: 'center'
     },
     loginLogoView: {
-        marginTop: verticalScale(100),
+        marginTop: moderateVerticalScale(100),
         alignItems: 'center'
     },
     btnStyle: {
         width: moderateScale(250),
-        height: verticalScale(36),
+        height: moderateScale(36),
         justifyContent: 'center',
         backgroundColor: Colors.primaryColor,
     },
@@ -140,12 +140,12 @@ const styles = StyleSheet.create({
         textAlign: 'right',
         display: 'flex',
         alignItems: 'flex-end',
-        marginBottom: verticalScale(40)
+        marginBottom: moderateVerticalScale(40)
     },
     customStyle: {
         width: moderateScale(200),
-        height: verticalScale(42),
-        marginBottom: verticalScale(30)
+        height: moderateScale(42),
+        marginBottom: moderateVerticalScale(30)
     },
     customTextStyle: {
         fontSize: scale(20),

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native'
-import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
+import { moderateScale, moderateVerticalScale, scale, verticalScale } from 'react-native-size-matters';
 import CustomHeader from '../../components/CustomHeader';
 import imagePath from '../../constants/imagePath';
 import CustomPkgBtn from '../../components/CustomPkgBtn';
@@ -65,7 +65,7 @@ const Subscription = () => {
         return (
             <View
                 style={{
-                    height: 10,
+                    height:moderateScale(10),
                 }}
             />
         );
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     },
     btnStyle: {
         width: moderateScale(200),
-        height: verticalScale(43),
+        height: moderateScale(43),
         borderRadius: moderateScale(10),
         backgroundColor: Colors.primaryColor
     },
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
     },
     singleBtnStyle: {
         width: moderateScale(95),
-        height: verticalScale(43),
+        height: moderateScale(43),
         borderRadius: moderateScale(8),
         backgroundColor: Colors.white,
         borderColor: Colors.primaryColor,
@@ -175,17 +175,17 @@ const styles = StyleSheet.create({
     itemListView: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: verticalScale(11),
+        marginBottom: moderateVerticalScale(11),
     },
     mainView: {
         borderRadius: moderateScale(8),
         width: moderateScale(135),
-        height: verticalScale(87),
+        height: moderateScale(87),
         borderWidth: 1,
         borderColor: Colors.primaryColor,
         backgroundColor: Colors.white,
         justifyContent: 'center',
-        marginRight: 10,
+        marginRight: moderateScale(10),
     },
     flexView: {
         flexDirection: 'row',
@@ -196,12 +196,12 @@ const styles = StyleSheet.create({
     },
     singleItemView: {
         width: moderateScale(45),
-        height: verticalScale(40),
+        height: moderateScale(40),
         backgroundColor: '#D9D9D9',
         borderRadius: moderateScale(11),
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom:verticalScale(4)
+        marginBottom:moderateVerticalScale(4)
     },
     singleItemName: {
         textAlign: 'center',
@@ -213,11 +213,11 @@ const styles = StyleSheet.create({
         fontSize: scale(10),
         fontWeight: '400',
         color: Colors.primaryColor,
-        marginBottom: verticalScale(7),
+        marginBottom: moderateVerticalScale(7),
         textAlign: 'center'
     },
     subscribeBtnStyle: {
         width: moderateScale(220),
-        height: verticalScale(45),
+        height: moderateScale(45),
     }
 })

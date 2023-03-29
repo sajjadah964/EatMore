@@ -6,7 +6,7 @@ import imagePath from '../../constants/imagePath';
 import Colors from '../../styles/Colors';
 import CustomPkgBtn from '../../components/CustomPkgBtn';
 // import CustomHeader from '../../components/CustomHeader';
-import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import { scale, moderateVerticalScale, moderateScale } from 'react-native-size-matters';
 import NavigationStrings from '../../constants/NavigationStrings';
 import { useNavigation } from '@react-navigation/native';
 
@@ -116,10 +116,10 @@ const styles = StyleSheet.create({
     footer: {
         flex: 1,
         backgroundColor: '#fff',
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
-        paddingVertical: 50,
-        paddingHorizontal: 30
+        borderTopLeftRadius: moderateScale(30),
+        borderTopRightRadius:moderateScale(30),
+        paddingVertical: moderateVerticalScale(50),
+        paddingHorizontal: moderateScale(30)
     },
     logo: {
         width: height_logo,
@@ -132,14 +132,14 @@ const styles = StyleSheet.create({
     },
     itemPriceStyle: {
         color: Colors.primaryColor,
-        marginTop: verticalScale(5),
+        marginTop: moderateVerticalScale(5),
         fontWeight: '600',
         fontSize: scale(20)
     },
     button: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: verticalScale(40),
+        marginTop: moderateVerticalScale(40),
         alignItems: 'center',
     },
     CounterView: {
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     },
     btnStyle: {
         width: moderateScale(150),
-        height: verticalScale(45),
+        height: moderateScale(45),
         backgroundColor: Colors.primaryColor,
         borderRadius: 42,
         justifyContent: 'center',

@@ -4,7 +4,7 @@ import CustomHeader from '../../components/CustomHeader';
 import Colors from '../../styles/Colors';
 import TopItemList from './TopItemList';
 import imagePath from '../../constants/imagePath';
-import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
+import { moderateScale, scale, moderateVerticalScale } from 'react-native-size-matters';
 import CustomPkgBtn from '../../components/CustomPkgBtn';
 import NavigationStrings from '../../constants/NavigationStrings';
 import { useNavigation } from '@react-navigation/native';
@@ -155,14 +155,14 @@ const styles = StyleSheet.create({
         borderRadius: moderateScale(15),
         backgroundColor: '#D9D9D9',
         width: moderateScale(100),
-        height: verticalScale(90),
+        height: moderateScale(90),
         alignItems: 'center',
         justifyContent: 'center',
         marginRight: moderateScale(15),
     },
     counterImgStyle: {
         width: moderateScale(17),
-        height: verticalScale(17)
+        height: moderateScale(17)
     },
     cartItemFlex: {
         flex: 1,
@@ -185,8 +185,8 @@ const styles = StyleSheet.create({
     },
     btnStyle: {
         width: moderateScale(200),
-        height: verticalScale(48),
+        height: moderateScale(48),
         backgroundColor: '#50379E',
-        marginTop: verticalScale(26),
+        marginTop: moderateVerticalScale(26),
     },
 })

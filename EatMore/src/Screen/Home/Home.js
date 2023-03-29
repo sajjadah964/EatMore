@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
+import { moderateScale, scale, moderateVerticalScale } from 'react-native-size-matters';
 import imagePath from '../../constants/imagePath';
 import TextInputWithLabel from '../../components/TextinputWithLable';
 import Colors from '../../styles/Colors';
@@ -165,9 +165,9 @@ const styles = StyleSheet.create({
     homeHeaderView: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: verticalScale(20),
+        marginTop: moderateVerticalScale(20),
         alignItems: 'center',
-        marginBottom: verticalScale(20),
+        marginBottom: moderateVerticalScale(20),
     },
     headerTitleStyle: {
         fontSize: scale(36),
@@ -176,38 +176,38 @@ const styles = StyleSheet.create({
         color: Colors.black
     },
     searchView: {
-        marginBottom: verticalScale(16),
+        marginBottom: moderateVerticalScale(16),
     },
     inputSearchStyle: {
-        width: moderateScale(297),
-        height: verticalScale(43),
+        width: '100%',
+        height: moderateScale(43),
         borderRadius: moderateScale(30),
         backgroundColor: '#F2EFFF',
         borderBottomWidth: 0,
         // backgroundColor:'red'
     },
     categoriesViewStyle: {
-        marginBottom: verticalScale(10)
+        marginBottom: moderateVerticalScale(10)
     },
     categoriesTextStyle: {
         fontSize: scale(24),
         fontWeight: '500',
         fontStyle: 'normal',
         color: Colors.black,
-        marginBottom: verticalScale(14),
+        marginBottom: moderateVerticalScale(14),
     },
     categoriesListStyle: {
         backgroundColor: '#D9D9D9',
         width: moderateScale(76),
-        height: verticalScale(75),
+        height: moderateScale(75),
         borderRadius: moderateScale(10)
     },
     singleItem: {
         width: `${190 / numColumns}%`,
-        height: verticalScale(180),
+        height: moderateScale(180),
         borderRadius: moderateScale(15),
         backgroundColor: '#D9D9D9',
-        paddingVertical:verticalScale(15),
+        paddingVertical:moderateVerticalScale(15),
         // backgroundColor:'red'
     },
     topItemViewStyle: {
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         fontStyle: 'normal',
         color: Colors.black,
-        marginBottom: verticalScale(14),
+        marginBottom: moderateVerticalScale(14),
     },
     itemPriceDetail:{
         display:'flex',
@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
         fontSize: scale(15),
         fontWeight: '400',
         color: Colors.black,
-       marginBottom:verticalScale(10)
+       marginBottom:moderateVerticalScale(10)
     },
     itemPriceStyle: {
         fontSize: scale(15),

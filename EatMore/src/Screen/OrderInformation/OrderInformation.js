@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Alert, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import CustomHeader from '../../components/CustomHeader'
-import { moderateScale, verticalScale, scale } from 'react-native-size-matters'
+import { moderateScale, moderateVerticalScale, scale } from 'react-native-size-matters'
 import Colors from '../../styles/Colors';
 import TextInputWithLabel from '../../components/TextinputWithLable';
 import fontFamily from '../../styles/fontFamily';
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         fontSize: scale(16),
         fontWeight: '600',
         color: Colors.black,
-        marginBottom: verticalScale(20),
+        marginBottom: moderateVerticalScale(20),
         // fontFamily:fontFamily.italic
     },
     // FormInputView :{
@@ -108,11 +108,11 @@ const styles = StyleSheet.create({
     // },
     inputStyle: {
         borderBottomWidth: 0,
-        width: moderateScale(300),
-        height: verticalScale(45),
+        width: '100%',
+        height: moderateScale(45),
         backgroundColor: '#EFEDED',
         borderRadius: moderateScale(8),
-        marginBottom: verticalScale(15),
+        marginBottom: moderateVerticalScale(15),
     },
     inlineInputStyle: {
         // paddingVertical: verticalScale(8),
@@ -122,9 +122,9 @@ const styles = StyleSheet.create({
     },
     btnStyle: {
         width: moderateScale(200),
-        height: verticalScale(48),
+        height: moderateScale(48),
         backgroundColor: '#50379E',
-        marginTop: verticalScale(36),
+        marginTop: moderateVerticalScale(36),
     },
 })
 

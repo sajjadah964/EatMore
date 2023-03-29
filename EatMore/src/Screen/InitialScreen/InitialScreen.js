@@ -11,7 +11,7 @@ import {
 import * as Animatable from 'react-native-animatable';
 import imagePath from '../../constants/imagePath';
 import { useNavigation } from '@react-navigation/native';
-import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import { scale, moderateVerticalScale, moderateScale } from 'react-native-size-matters';
 import NavigationStrings from '../../constants/NavigationStrings';
 import CustomPkgBtn from '../../components/CustomPkgBtn';
 import Colors from '../../styles/Colors';
@@ -74,10 +74,10 @@ const styles = StyleSheet.create({
     footer: {
         flex: 1,
         backgroundColor: '#fff',
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
-        paddingVertical: 50,
-        paddingHorizontal: 30
+        borderTopLeftRadius: moderateScale(30),
+        borderTopRightRadius: moderateScale(30),
+        paddingVertical: moderateVerticalScale(50),
+        paddingHorizontal: moderateScale(30)
     },
     logo: {
         width: height_logo,
@@ -91,16 +91,16 @@ const styles = StyleSheet.create({
     text: {
         fontSize:scale(16),
         color:Colors.primaryColor,
-        marginTop:verticalScale(5),
+        marginTop:moderateVerticalScale(5),
         fontWeight:'600'
     },
     button: {
         alignItems: 'flex-end',
-        marginTop:verticalScale(50)
+        marginTop:moderateVerticalScale(50)
     },
     btnStyle: {
         width: moderateScale(200),
-        height: verticalScale(53),
+        height: moderateScale(53),
         backgroundColor:Colors.primaryColor,
         borderRadius: 42,
         justifyContent: 'center',
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     },
     textStyle: {
         fontWeight: 400,
-        fontSize: 22,
+        fontSize:scale(22),
         color: Colors.white,
         fontStyle: 'normal',
     },

@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: Colors.primaryColor,
         borderRadius: moderateScale(4),
-        width: moderateScale(250),
-        height: verticalScale(40),
+        width: '100%',
+        height: moderateScale(40),
         // backgroundColor:'red'
     },
     inlineInputStyle: {
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     visibleStyle: {
         tintColor: Colors.primaryColor,
         width: moderateScale(19),
-        height: verticalScale(13)
+        height: moderateScale(13)
     },
     searchBtnStyle: {
         paddingLeft: moderateScale(20),

@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, Image } from 'r
 import imagePath from '../constants/imagePath';
 import { useNavigation } from '@react-navigation/native'
 import Colors from '../styles/Colors';
-import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import { scale, moderateVerticalScale, moderateScale } from 'react-native-size-matters';
 
 // create a component
 const CustomHeader = ({
@@ -46,7 +46,7 @@ const CustomHeader = ({
 // define your styles
 const styles = StyleSheet.create({
     headerStyle: {
-        minHeight: verticalScale(70),
+        minHeight: moderateScale(70),
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     },
     imgStyle: {
         width: moderateScale(26),
-        height: verticalScale(17),
+        height: moderateScale(17),
         // tintColor:Colors.blue,
     },
     headerTitleStyle: {
