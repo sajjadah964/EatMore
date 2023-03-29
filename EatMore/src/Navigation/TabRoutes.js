@@ -11,6 +11,7 @@ import CartStack from './CartStack';
 import SearchStack from './SearchStack';
 import HomeStack from './HomeStack';
 import Colors from '../styles/Colors';
+import { moderateScale } from 'react-native-size-matters';
 
 // const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -38,6 +39,8 @@ function Routes() {
                             <Image
                                 style={{
                                     tintColor: focused ? Colors.primaryColor : 'gray',
+                                    width: moderateScale(26),
+                                    height: moderateScale(26)
                                 }}
                                 source={imagePath.icHome}
                             />
@@ -54,6 +57,8 @@ function Routes() {
                             <Image
                                 style={{
                                     tintColor: focused ? Colors.primaryColor : 'gray',
+                                    width:moderateScale(27),
+                                    height:moderateScale(27)
                                 }}
                                 source={imagePath.icSearch}
                             />
@@ -70,7 +75,8 @@ function Routes() {
                             <Image
                                 style={{
                                     tintColor: focused ? Colors.primaryColor : 'gray',
-
+                                    width:moderateScale(27),
+                                    height:moderateScale(27)
                                 }}
                                 // source={focused ? IconPath.icExplores : IconPath.icExplore}
                                 source={imagePath.icCart}
@@ -89,7 +95,8 @@ function Routes() {
                             <Image
                                 style={{
                                     tintColor: focused ? Colors.primaryColor : 'gray',
-
+                                    width:moderateScale(27),
+                                    height:moderateScale(27)
                                 }}
                                 // source={focused ? IconPath.icExplores : IconPath.icExplore}
                                 source={imagePath.icSubscription}
@@ -108,7 +115,8 @@ function Routes() {
                             <Image
                                 style={{
                                     tintColor: focused ? Colors.primaryColor : 'gray',
-
+                                    width:moderateScale(27),
+                                    height:moderateScale(27)
                                 }}
                                 // source={focused ? IconPath.icExplores : IconPath.icExplore}
                                 source={imagePath.icUserLogo}

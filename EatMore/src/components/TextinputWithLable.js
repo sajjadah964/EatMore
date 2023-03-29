@@ -61,11 +61,11 @@ const TextInputWithLabel = ({
 
 const styles = StyleSheet.create({
     inputStyle: {
+        width: '100%',
+        height: moderateScale(40),
         borderBottomWidth: 1,
         borderBottomColor: Colors.primaryColor,
         borderRadius: moderateScale(4),
-        width: '100%',
-        height: moderateScale(40),
         // backgroundColor:'red'
     },
     inlineInputStyle: {

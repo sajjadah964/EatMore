@@ -123,16 +123,11 @@ const Home = () => {
                     <TextInputWithLabel
                         placeHolder='Search'
                         placeholderTextColor="gray"
-                        inputStyle={{ ...styles.inputSearchStyle, }}
+                        inputStyle={{ ...styles.inputSearchStyle, paddingHorizontal: isFocused ? moderateScale(20) : 0 }}
                         keyboardType="web-search"
                         searchIcon={isFocused ? null : imagePath.icSearchItem}
                         onFocus={() => onFocus()}
                         onBlur={() => setIsFocused(false)}
-                        // style={isFocused ? {paddingHorizontal : 20} :inputSearchStyle}
-                        style={[
-                            styles.inputSearchStyle,
-                            { fontSize: scale(18), paddingHorizontal: isFocused ? moderateScale(20) : 0, paddingLeft: moderateScale(8) }
-                        ]}
                     >
                     </TextInputWithLabel>
                 </View>
@@ -200,13 +195,11 @@ const styles = StyleSheet.create({
         marginBottom: moderateVerticalScale(16),
     },
     inputSearchStyle: {
-        width: '100%',
+        // width: moderateScale(300),
         height: moderateScale(43),
         borderRadius: moderateScale(30),
         backgroundColor: '#F2EFFF',
         borderBottomWidth: 0,
-        // alignItems:'center',
-        // textAlignVertical: 'center',
         paddingTop: 0, // remove default padding
         paddingBottom: 0, // remove default padding
     },
