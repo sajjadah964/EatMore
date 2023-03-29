@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native'
-import { moderateScale, moderateVerticalScale, scale, verticalScale } from 'react-native-size-matters';
+import { moderateScale, moderateVerticalScale, scale, } from 'react-native-size-matters';
 import CustomHeader from '../../components/CustomHeader';
 import imagePath from '../../constants/imagePath';
 import CustomPkgBtn from '../../components/CustomPkgBtn';

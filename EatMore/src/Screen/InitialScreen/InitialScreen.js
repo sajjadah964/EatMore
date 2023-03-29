@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
         width: moderateScale(200),
         height: moderateScale(53),
         backgroundColor:Colors.primaryColor,
-        borderRadius: 42,
+        borderRadius:moderateScale(42),
         justifyContent: 'center',
         borderColor:Colors.white,
         borderWidth:2,

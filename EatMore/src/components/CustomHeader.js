@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, Image } from 'r
 import imagePath from '../constants/imagePath';
 import { useNavigation } from '@react-navigation/native'
 import Colors from '../styles/Colors';
-import { scale, moderateVerticalScale, moderateScale } from 'react-native-size-matters';
+import { scale, moderateVerticalScale, moderateScale ,verticalScale } from 'react-native-size-matters';
 
 // create a component
 const CustomHeader = ({

@@ -12,7 +12,7 @@ function Routes() {
         <NavigationContainer>
             <Stack.Navigator
                 screenOptions={{ presentation: 'card', headerShown: false }}
-                initialRouteName={NavigationStrings.HOME}
+                initialRouteName={NavigationStrings.INITIAL_SCREEN}
             >
                 {MainStack(Stack)}
                 {/* {AuthStack(Stack)} */}

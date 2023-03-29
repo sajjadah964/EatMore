@@ -157,12 +157,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     loginSignText: {
-        fontSize: 16,
+        fontSize:scale(16),
         fontWeight: 'bold',
         color: Colors.primaryColor
     },
     line: {
-        height: 1,
+        height:moderateScale(1),
         backgroundColor: Colors.primaryColor,
         // width: '73%',
     },

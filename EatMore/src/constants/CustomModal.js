@@ -72,7 +72,7 @@ const styles = {
         fontSize: scale(16),
     },
     customStyle: {
-        height: verticalScale(45),
+        height: moderateScale(45),
         width: moderateScale(200),
         backgroundColor: Colors.primaryColor
     }

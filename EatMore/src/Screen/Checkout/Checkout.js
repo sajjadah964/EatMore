@@ -42,7 +42,7 @@ const Checkout = () => {
                 <TextInputWithLabel
                     label={'Phone Number'}
                     // inputStyle={[styles.inputStyle, {height: verticalScale(45)}]}
-                    inputStyle={{ ...styles.inputStyle, height: verticalScale(45) }}
+                    inputStyle={{ ...styles.inputStyle, height: moderateScale(45) }}
                     placeHolder="Enter Number"
                     inlineInputStyle={styles.inlineInputStyle}
                     placeholderTextColor='rgba(0, 0, 0, 0.5)'

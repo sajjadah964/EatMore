@@ -109,7 +109,7 @@ const Home = () => {
                     <TextInputWithLabel
                         placeHolder='Search'
                         placeholderTextColor="gray"
-                        placeholderStyle={{ fontSize: 20 }}
+                        placeholderStyle={{ fontSize:scale(20)}}
                         inputStyle={{ ...styles.inputSearchStyle }}
                         keyboardType="web-search"
                         searchIcon={isFocused ? null : imagePath.icSearchItem}
