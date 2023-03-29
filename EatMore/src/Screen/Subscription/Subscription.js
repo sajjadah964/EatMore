@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     itemListView: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: moderateVerticalScale(11),
+        marginBottom: moderateVerticalScale(25),
     },
     mainView: {
         borderRadius: moderateScale(8),
