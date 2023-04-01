@@ -25,4 +25,5 @@ export default {
     icDoneImg: require('../assets/images/done-img.png'),
     icSubBurger: require('../assets/images/sub-burger.png'),
     icSubPizza: require('../assets/images/sub-pizza.png'),
+    icUserImg: require('../assets/images/user-img.png'),
 }

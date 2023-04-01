@@ -162,7 +162,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingHorizontal: moderateScale(26),
-        backgroundColor: '#FEFEFE'
+        backgroundColor: '#FEFEFE',
+        justifyContent:'space-evenly'
     },
     btnStyle: {
         width: moderateScale(200),
