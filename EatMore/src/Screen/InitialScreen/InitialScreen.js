@@ -39,6 +39,8 @@ const InitialScreen = () => {
                     backgroundColor: Colors.white
                 }]}
                 animation="fadeInUpBig"
+                duration={1000}
+                // delay={50}
             >
                 <Text style={[styles.title, {
                     color: Colors.black
@@ -64,7 +66,7 @@ const height_logo = height * 0.28;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor:Colors.primaryColor
+        backgroundColor: Colors.primaryColor
     },
     header: {
         flex: 2,
@@ -85,31 +87,31 @@ const styles = StyleSheet.create({
     },
     title: {
         color: '#05375a',
-        fontSize:scale(30),
+        fontSize: scale(30),
         fontWeight: 'bold'
     },
     text: {
-        fontSize:scale(16),
-        color:Colors.primaryColor,
-        marginTop:moderateVerticalScale(5),
-        fontWeight:'600'
+        fontSize: scale(16),
+        color: Colors.primaryColor,
+        marginTop: moderateVerticalScale(5),
+        fontWeight: '600'
     },
     button: {
         alignItems: 'flex-end',
-        marginTop:moderateVerticalScale(50)
+        marginTop: moderateVerticalScale(50)
     },
     btnStyle: {
         width: moderateScale(200),
         height: moderateScale(53),
-        backgroundColor:Colors.primaryColor,
-        borderRadius:moderateScale(42),
+        backgroundColor: Colors.primaryColor,
+        borderRadius: moderateScale(42),
         justifyContent: 'center',
-        borderColor:Colors.white,
-        borderWidth:2,
+        borderColor: Colors.white,
+        borderWidth: 2,
     },
     textStyle: {
         fontWeight: 400,
-        fontSize:scale(22),
+        fontSize: scale(22),
         color: Colors.white,
         fontStyle: 'normal',
     },

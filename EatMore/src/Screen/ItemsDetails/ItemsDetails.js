@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect } from 'react';
 import { SafeAreaView, StyleSheet, Text, View, Dimensions, Image, TouchableOpacity } from 'react-native'
 import CustomHeader from '../../components/CustomHeader';
 import * as Animatable from 'react-native-animatable';
@@ -9,11 +9,13 @@ import CustomPkgBtn from '../../components/CustomPkgBtn';
 import { scale, moderateVerticalScale, moderateScale } from 'react-native-size-matters';
 import NavigationStrings from '../../constants/NavigationStrings';
 import { useNavigation } from '@react-navigation/native';
+import Loader from '../../components/Loader';
 
 const ItemsDetails = (props) => {
     // console.log(props.route.params.detail);
     // console.log(props.index)
-    // const{navigation}={props}
+    // const{navigation}={props
+    const [isLoading, setisLoading] = useState(true);
     const navigation = useNavigation()
     const { itemName, itemPrice, itemUrl } = props.route.params.detail;
     const { index } = props.route.params.index;
@@ -22,6 +24,13 @@ const ItemsDetails = (props) => {
     const moveToScreen = (screen) => {
         navigation.navigate(screen)
     }
+    // LOADING CODE
+    useEffect(() => {
+        setTimeout(() => {
+            setisLoading(false);
+        }, 1000);
+    }),
+        [];
     const counter = (type) => {
         if (type == "increment") {
             setCount(count + 1)
@@ -30,75 +39,79 @@ const ItemsDetails = (props) => {
         }
     }
     return (
-        <View style={styles.container}>
-            {/* <StatusBar backgroundColor='#009387' barStyle="light-content" /> */}
-            <View style={{ paddingHorizontal: moderateScale(26) }}>
-                <CustomHeader
-                    leftImg={imagePath.icBack}
-                />
-            </View>
-            <View style={styles.header}>
-                <View style={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    flex: 1,
-                }}>
-                    <Animatable.Image
-                        animation="bounceIn"
-                        duraton="1500"
-                        source={itemUrl}
-                        style={styles.logo}
-                        resizeMode="stretch"
-                    />
-                </View>
-            </View>
-            <Animatable.View
-                style={[styles.footer, {
-                    backgroundColor: Colors.white
-                }]}
-                animation="fadeInUpBig"
-            >
-                <Text style={[styles.itemNameStyle, {
-                    color: Colors.black
-                }]}>{itemName}</Text>
-                <Text style={styles.itemPriceStyle}>Rs.{itemPrice}</Text>
-                <Text style={styles.description}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum   has been the industry's standard dummy text ever since the 1500s
-                </Text>
-                <View style={styles.button}>
-                    <View style={styles.CounterView}>
-                        <TouchableOpacity
-                            activeOpacity={0.7}
-                            onPress={() => counter('decrement')}
-                        >
-                            <Image
-                                source={imagePath.icMinus}
-                            />
-                        </TouchableOpacity>
-                        <Text style={{
-                            marginHorizontal: moderateScale(10),
-                            fontSize: scale(20),
-                            fontWeight: '400',
-                        }}>{count}</Text>
-                        <TouchableOpacity
-                            activeOpacity={0.7}
-                            onPress={() => counter('increment')}
-                        >
-                            <Image
-                                source={imagePath.icPLus}
-                            />
-                        </TouchableOpacity>
-                    </View>
-                    <View>
-                        <CustomPkgBtn
-                            onPress={() => { moveToScreen(NavigationStrings.CART_STACK) }}
-                            textStyle={{ ...styles.textStyle }}
-                            btnStyle={{ ...styles.btnStyle }}
-                            btnText={'Add to Cart'}
+        <SafeAreaView style={{ flex: 1 }}>
+            {isLoading ? <Loader isLoading={isLoading} /> :
+                <View style={styles.container}>
+                    {/* <StatusBar backgroundColor='#009387' barStyle="light-content" /> */}
+                    <View style={{ paddingHorizontal: moderateScale(26) }}>
+                        <CustomHeader
+                            leftImg={imagePath.icBack}
                         />
                     </View>
+                    <View style={styles.header}>
+                        <View style={{
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            flex: 1,
+                        }}>
+                            <Animatable.Image
+                                animation="bounceIn"
+                                duraton="1500"
+                                source={itemUrl}
+                                style={styles.logo}
+                                resizeMode="stretch"
+                            />
+                        </View>
+                    </View>
+                    <Animatable.View
+                        style={[styles.footer, {
+                            backgroundColor: Colors.white
+                        }]}
+                        animation="fadeInUpBig"
+                    >
+                        <Text style={[styles.itemNameStyle, {
+                            color: Colors.black
+                        }]}>{itemName}</Text>
+                        <Text style={styles.itemPriceStyle}>Rs.{itemPrice}</Text>
+                        <Text style={styles.description}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum   has been the industry's standard dummy text ever since the 1500s
+                        </Text>
+                        <View style={styles.button}>
+                            <View style={styles.CounterView}>
+                                <TouchableOpacity
+                                    activeOpacity={0.7}
+                                    onPress={() => counter('decrement')}
+                                >
+                                    <Image
+                                        source={imagePath.icMinus}
+                                    />
+                                </TouchableOpacity>
+                                <Text style={{
+                                    marginHorizontal: moderateScale(10),
+                                    fontSize: scale(20),
+                                    fontWeight: '400',
+                                }}>{count}</Text>
+                                <TouchableOpacity
+                                    activeOpacity={0.7}
+                                    onPress={() => counter('increment')}
+                                >
+                                    <Image
+                                        source={imagePath.icPLus}
+                                    />
+                                </TouchableOpacity>
+                            </View>
+                            <View>
+                                <CustomPkgBtn
+                                    onPress={() => { moveToScreen(NavigationStrings.CART_STACK) }}
+                                    textStyle={{ ...styles.textStyle }}
+                                    btnStyle={{ ...styles.btnStyle }}
+                                    btnText={'Add to Cart'}
+                                />
+                            </View>
+                        </View>
+                    </Animatable.View>
                 </View>
-            </Animatable.View>
-        </View>
+            }
+        </SafeAreaView>
     )
 }
 
@@ -139,7 +152,7 @@ const styles = StyleSheet.create({
         fontSize: scale(20)
     },
     button: {
-        flex:1,
+        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginTop: moderateVerticalScale(40),
@@ -156,9 +169,9 @@ const styles = StyleSheet.create({
         width: moderateScale(150),
         height: moderateScale(45),
         backgroundColor: Colors.primaryColor,
-        borderRadius:moderateScale(42),
+        borderRadius: moderateScale(42),
         borderColor: Colors.primaryColor,
-        borderWidth:moderateScale(1),
+        borderWidth: moderateScale(1),
         backgroundColor: Colors.white,
         // marginTop: moderateVerticalScale(20)
     },

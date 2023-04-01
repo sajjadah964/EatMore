@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect } from 'react';
 import { Image, SafeAreaView, StyleSheet, Text, View, Modal, Button, TouchableOpacity } from 'react-native'
 import CustomHeader from '../../components/CustomHeader'
 import Colors from '../../styles/Colors'
@@ -9,10 +9,12 @@ import CustomPkgBtn from '../../components/CustomPkgBtn';
 import CustomModal from '../../constants/CustomModal';
 import { useNavigation } from '@react-navigation/native';
 import NavigationStrings from '../../constants/NavigationStrings';
+import Loader from '../../components/Loader';
 
 const Checkout = () => {
     const navigation = useNavigation();
     const [ModalVisible, setModalVisible] = useState(false);
+    const [isLoading, setisLoading] = useState(true);
     const toggleModal = () => {
         setModalVisible(!ModalVisible);
     };
@@ -22,93 +24,103 @@ const Checkout = () => {
     const moveToScreen = (screen) => {
         navigation.navigate(screen)
     }
+    // LOADING CODE
+    useEffect(() => {
+        setTimeout(() => {
+            setisLoading(false);
+        }, 1000);
+    }),
+        [];
     return (
         <SafeAreaView style={{
             flex: 1
         }}>
-            <View style={styles.container}>
-                <CustomHeader
-                    leftImg={imagePath.icBack}
-                    headerTitle={'Checkout'}
-                    headerImgStyle={styles.headerImgStyle}
-                />
-                <TextInputWithLabel
-                    label={'Delivery Address'}
-                    inputStyle={styles.inputStyle}
-                    placeHolder="Enter Address"
-                    inlineInputStyle={styles.inlineInputStyle}
-                    placeholderTextColor='rgba(0, 0, 0, 0.5)'
-                />
-                <TextInputWithLabel
-                    label={'Phone Number'}
-                    // inputStyle={[styles.inputStyle, {height: verticalScale(45)}]}
-                    inputStyle={{ ...styles.inputStyle, height: moderateScale(45) }}
-                    placeHolder="Enter Number"
-                    inlineInputStyle={styles.inlineInputStyle}
-                    placeholderTextColor='rgba(0, 0, 0, 0.5)'
-                    keyboardType="numeric"
-                />
-                <TouchableOpacity style={styles.paymentMethodView} activeOpacity={0.8} onPress={() => toggleModal()}>
-                    <Text style={styles.paymentMethodText}>Payment Method</Text>
-                    <Image
-                        source={imagePath.icPaymentArrow}
+            {isLoading ? <Loader isLoading={isLoading} /> :
+                <View style={styles.container}>
+                    <CustomHeader
+                        leftImg={imagePath.icBack}
+                        headerTitle={'Checkout'}
+                        headerImgStyle={styles.headerImgStyle}
                     />
-                </TouchableOpacity>
-                {/* 
-                <Modal
-                    visible={ModalVisible}
-                    animationType="fade"
-                    style={styles.modal}
-                    transparent
-                    onRequestClose={() => setModalVisible(false)}
-                >
-                    <View style={styles.modalContainer}>
-                        <View style={styles.modalView}>
-                            <Text style={styles.modalTitle}>Payment Method</Text>
-                            <CustomPkgBtn
-                                textStyle={{ ...styles.textStyle, ...styles.customTextStyle }}
-                                btnStyle={{ ...styles.btnStyle, ...styles.customStyle }}
-                                btnText={'Done'}
-                                onPress={toggleModal}
-                            />
-                        </View>
-                    </View>
-                </Modal> */}
-                <CustomModal
-                    visible={ModalVisible}
-                    title="Payment Method"
-                    buttonText="Done"
-                    onButtonPress={toggleModal}
-                    onRequestClose={onClose}
-                >
-                    <Text>Some additional content can be added here.</Text>
-                </CustomModal>
-
-                <View style={styles.orderSummaryView}>
-                    <Text style={styles.orderSummaryLabel}> Order Summary</Text>
-                    <View style={styles.orderSummaryContent}>
-                        <View style={styles.singleContent}>
-                            <Text style={styles.singleContentText}>1x Chicken Burger</Text>
-                            <Text style={styles.singleContentText}>300</Text>
-                        </View>
-                        <View style={[styles.singleContent, { marginBottom: moderateVerticalScale(15) }]}>
-                            <Text style={styles.singleContentText}>Delivery Fee</Text>
-                            <Text style={styles.singleContentText}>50</Text>
-                        </View>
-                        <View style={styles.singleContent}>
-                            <Text style={styles.singleContentText}>Total</Text>
-                            <Text style={styles.singleContentText}>350</Text>
-                        </View>
+                    <TextInputWithLabel
+                        label={'Delivery Address'}
+                        inputStyle={styles.inputStyle}
+                        placeHolder="Enter Address"
+                        inlineInputStyle={styles.inlineInputStyle}
+                        placeholderTextColor='rgba(0, 0, 0, 0.5)'
+                    />
+                    <TextInputWithLabel
+                        label={'Phone Number'}
+                        // inputStyle={[styles.inputStyle, {height: verticalScale(45)}]}
+                        inputStyle={{ ...styles.inputStyle, height: moderateScale(45) }}
+                        placeHolder="Enter Number"
+                        inlineInputStyle={styles.inlineInputStyle}
+                        placeholderTextColor='rgba(0, 0, 0, 0.5)'
+                        keyboardType="numeric"
+                    />
+                    <TouchableOpacity style={styles.paymentMethodView} activeOpacity={0.8} onPress={() => toggleModal()}>
+                        <Text style={styles.paymentMethodText}>Payment Method</Text>
+                        <Image
+                            source={imagePath.icPaymentArrow}
+                        />
+                    </TouchableOpacity>
+                    {/* 
+            <Modal
+                visible={ModalVisible}
+                animationType="fade"
+                style={styles.modal}
+                transparent
+                onRequestClose={() => setModalVisible(false)}
+            >
+                <View style={styles.modalContainer}>
+                    <View style={styles.modalView}>
+                        <Text style={styles.modalTitle}>Payment Method</Text>
+                        <CustomPkgBtn
+                            textStyle={{ ...styles.textStyle, ...styles.customTextStyle }}
+                            btnStyle={{ ...styles.btnStyle, ...styles.customStyle }}
+                            btnText={'Done'}
+                            onPress={toggleModal}
+                        />
                     </View>
                 </View>
+            </Modal> */}
+                    <CustomModal
+                        visible={ModalVisible}
+                        title="Payment Method"
+                        buttonText="Done"
+                        onButtonPress={toggleModal}
+                        onRequestClose={onClose}
+                    >
+                        <Text>Some additional content can be added here.</Text>
+                    </CustomModal>
 
-                <CustomPkgBtn
-                    btnText={'Place Order'}
-                    textStyle={{ ...styles.textStyle }}
-                    btnStyle={{ ...styles.btnStyle }}
-                    onPress={() => moveToScreen(NavigationStrings.ORDER_INFORMATION)}
-                />
-            </View>
+                    <View style={styles.orderSummaryView}>
+                        <Text style={styles.orderSummaryLabel}> Order Summary</Text>
+                        <View style={styles.orderSummaryContent}>
+                            <View style={styles.singleContent}>
+                                <Text style={styles.singleContentText}>1x Chicken Burger</Text>
+                                <Text style={styles.singleContentText}>300</Text>
+                            </View>
+                            <View style={[styles.singleContent, { marginBottom: moderateVerticalScale(15) }]}>
+                                <Text style={styles.singleContentText}>Delivery Fee</Text>
+                                <Text style={styles.singleContentText}>50</Text>
+                            </View>
+                            <View style={styles.singleContent}>
+                                <Text style={styles.singleContentText}>Total</Text>
+                                <Text style={styles.singleContentText}>350</Text>
+                            </View>
+                        </View>
+                    </View>
+
+                    <CustomPkgBtn
+                        btnText={'Place Order'}
+                        textStyle={{ ...styles.textStyle }}
+                        btnStyle={{ ...styles.btnStyle }}
+                        onPress={() => moveToScreen(NavigationStrings.ORDER_INFORMATION)}
+                    />
+                </View>
+
+            }
         </SafeAreaView>
     )
 }

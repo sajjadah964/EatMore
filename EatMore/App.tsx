@@ -1,13 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native'
-import Routes from './src/Navigation/Routes'
+import Providers from './src/Navigation';
 
 const App = () => {
-  return (
-    <View style={{flex:1}}>
-      <Routes />
-    </View>
-  )
+  return <Providers />;
 }
 
-export default App
+export default App;

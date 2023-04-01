@@ -1,7 +1,6 @@
 import React from "react";
 import NavigationStrings from "../constants/NavigationStrings";
 import { InitialScreen, Login, Signup } from "../Screen";
-import TabRoutes from './TabRoutes';
 export default function (Stack) {
     return (
         <>

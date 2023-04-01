@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useState, useContext, useEffect } from 'react';
+import { Alert, FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { moderateScale, scale, moderateVerticalScale } from 'react-native-size-matters';
 import imagePath from '../../constants/imagePath';
 import TextInputWithLabel from '../../components/TextinputWithLable';
@@ -9,14 +9,40 @@ import TopItemList from './TopItemList';
 import NavigationStrings from '../../constants/NavigationStrings';
 import { useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
-
-let gapWidth = 0;
+import { AuthContext } from '../../Navigation/AuthProvider';
+import Loader from '../../components/Loader';
+// let gapWidth
+//  = 0;
 const numColumns = 2;
 const Home = () => {
+    const { user, logout } = useContext(AuthContext);
+    const [isLoading, setisLoading] = useState(true);
+    useEffect(() => {
+        setTimeout(() => {
+            setisLoading(false);
+        }, 100);
+    }, []);
     const navigation = useNavigation()
     const [isFocused, setIsFocused] = useState(false);
-    const [selectedItem, setSelectedItem] = useState(0)
-
+    const [selectedItem, setSelectedItem] = useState(0);
+    const logoutData = () => {
+        Alert.alert(
+            'Logout',
+            'Are you sure you want to Logout!',
+            [
+                {
+                    text: 'Cancel',
+                    style: 'cancel',
+                },
+                {
+                    text: 'OK',
+                    onPress: () => logout(),
+                    style: 'cancel',
+                },
+            ],
+            { cancelable: false }
+        );
+    }
     const onItemPress = (id) => {
         setSelectedItem(id);
     }
@@ -30,6 +56,13 @@ const Home = () => {
         return (
             { backgroundColor: 'red', paddingHorizontal: 20 }
         )
+    }
+    const goToDetails = (item, index) => {
+        // console.log('item details',detail);
+        navigation.navigate(NavigationStrings.ITEMS_DETAILS, {
+            detail: item,
+            index, index
+        });
     }
     const renderItem = ({ item, index }) => {
         // console.log(item)
@@ -65,13 +98,6 @@ const Home = () => {
             </TouchableOpacity>
         )
     }
-    const goToDetails = (item, index) => {
-        // console.log('item details',detail);
-        navigation.navigate(NavigationStrings.ITEMS_DETAILS, {
-            detail: item,
-            index, index
-        });
-    }
     const topItemList = ({ item, index }) => {
         console.log(item, 'top item list')
         return (
@@ -105,69 +131,73 @@ const Home = () => {
     }
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <View style={styles.container}>
-                <View style={styles.homeHeaderView}>
-                    <View>
-                        <Text style={styles.headerTitleStyle}>Menu</Text>
+            {isLoading ? <Loader isLoading={isLoading} /> :
+                <View style={styles.container}>
+                    <View style={styles.homeHeaderView}>
+                        <View>
+                            <Text style={styles.headerTitleStyle}>Menu</Text>
+                        </View>
+                        <TouchableOpacity
+                            onPress={() => logoutData()}
+                            activeOpacity={0.7}
+                        >
+                            <Image
+                                source={imagePath.icUserProfileLogo}
+                            />
+                        </TouchableOpacity>
                     </View>
-                    <TouchableOpacity
-                        onPress={() => alert('logout')}
+
+                    <View style={styles.searchView}>
+                        <TextInputWithLabel
+                            placeHolder='Search'
+                            placeholderTextColor="gray"
+                            inputStyle={{ ...styles.inputSearchStyle, paddingHorizontal: isFocused ? moderateScale(20) : 0 }}
+                            keyboardType="web-search"
+                            searchIcon={isFocused ? null : imagePath.icSearchItem}
+                            onFocus={() => onFocus()}
+                            onBlur={() => setIsFocused(false)}
+                        >
+                        </TextInputWithLabel>
+                    </View>
+
+                    <View
+                        style={[styles.categoriesViewStyle]}
                     >
-                        <Image
-                            source={imagePath.icUserProfileLogo}
+                        <Text style={styles.categoriesTextStyle}>Categories</Text>
+                        <FlatList
+                            horizontal
+                            data={CategoryList}
+                            renderItem={renderItem}
+                            keyExtractor={(item, index) => index.toString()}
+                            ItemSeparatorComponent={() => <View style={{ marginLeft: moderateScale(20) }} />}
                         />
-                    </TouchableOpacity>
-                </View>
+                    </View>
 
-                <View style={styles.searchView}>
-                    <TextInputWithLabel
-                        placeHolder='Search'
-                        placeholderTextColor="gray"
-                        inputStyle={{ ...styles.inputSearchStyle, paddingHorizontal: isFocused ? moderateScale(20) : 0 }}
-                        keyboardType="web-search"
-                        searchIcon={isFocused ? null : imagePath.icSearchItem}
-                        onFocus={() => onFocus()}
-                        onBlur={() => setIsFocused(false)}
+                    <View
+                        style={styles.topItemViewStyle}
                     >
-                    </TextInputWithLabel>
+                        <Text style={styles.topItemListHeading}>Top Items</Text>
+
+                        <FlatList
+                            data={TopItemList}
+                            renderItem={topItemList}
+                            keyExtractor={(item, index) => index.toString()}
+                            numColumns={numColumns}
+                            scrollEnabled={true}
+                            showsVerticalScrollIndicator={false}
+                            ItemSeparatorComponent={() => <View
+                                style={{
+                                    marginBottom: moderateVerticalScale(15),
+                                    // alignItems:'center',
+
+                                }}
+                            />}
+                        />
+                    </View>
+
                 </View>
+            }
 
-                <View
-                    style={[styles.categoriesViewStyle]}
-                >
-                    <Text style={styles.categoriesTextStyle}>Categories</Text>
-                    <FlatList
-                        horizontal
-                        data={CategoryList}
-                        renderItem={renderItem}
-                        keyExtractor={(item, index) => index.toString()}
-                        ItemSeparatorComponent={() => <View style={{ marginLeft: moderateScale(20) }} />}
-                    />
-                </View>
-
-                <View
-                    style={styles.topItemViewStyle}
-                >
-                    <Text style={styles.topItemListHeading}>Top Items</Text>
-
-                    <FlatList
-                        data={TopItemList}
-                        renderItem={topItemList}
-                        keyExtractor={(item, index) => index.toString()}
-                        numColumns={numColumns}
-                        scrollEnabled={true}
-                        showsVerticalScrollIndicator={false}
-                        ItemSeparatorComponent={() => <View
-                            style={{
-                                marginBottom: moderateVerticalScale(15),
-                                // alignItems:'center',
-
-                            }}
-                        />}
-                    />
-                </View>
-
-            </View>
         </SafeAreaView>
     )
 }

@@ -44,6 +44,7 @@ const TextInputWithLabel = ({
                         placeholder={placeHolder}
                         style={{ ...styles.inlineInputStyle, ...inlineInputStyle }}
                         {...props}
+                        onChangeText={onChangeText}
                     />
 
                     {!!rightIcon ? <TouchableOpacity

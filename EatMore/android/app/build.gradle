@@ -1,8 +1,11 @@
+// apply plugin: "com.androapply plugin:.application"
 apply plugin: "com.android.application"
 apply plugin: "com.facebook.react"
 
 import com.android.build.OutputFile
-
+//NEW CODE 
+apply plugin: 'com.google.gms.google-services'
+//NEW CODE 
 /**
  * This is the configuration block to customize your React Native Android app.
  * By default you don't need to apply any configuration, just uncomment the lines you need.
@@ -153,6 +156,10 @@ dependencies {
     implementation("com.facebook.react:react-android")
 
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
+
+    //NEW CODE 
+    implementation platform('com.google.firebase:firebase-bom:31.3.0')
+    //NEW CODE 
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
     debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {

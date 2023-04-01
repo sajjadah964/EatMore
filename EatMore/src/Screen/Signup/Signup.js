@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useContext } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Image, TouchableOpacity } from 'react-native'
 import { moderateScale, scale, moderateVerticalScale } from 'react-native-size-matters';
 import CustomPkgBtn from '../../components/CustomPkgBtn';
@@ -7,10 +7,15 @@ import Colors from '../../styles/Colors';
 import TextInputWithLabel from '../../components/TextinputWithLable';
 import NavigationStrings from '../../constants/NavigationStrings';
 import * as Animatable from 'react-native-animatable';
-
+import { AuthContext } from '../../Navigation/AuthProvider';
 
 const Signup = ({ navigation }) => {
     //   const navigation = useNavigation();
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+    const [confirmPassword, setConfirmPassword] = useState();
+    const {register} = useContext(AuthContext);
+
     const [isVisible, setVisible] = useState(true);
     const [CVisible, setCVisible] = useState(true);
     const [textWidth, setTextWidth] = useState(null);
@@ -22,6 +27,11 @@ const Signup = ({ navigation }) => {
     const moveToScreen = (screen) => {
         navigation.navigate(screen);
     }
+    const handleSignup = async (email, password) => {
+        await register(email, password);
+        // navigate to login screen
+        navigation.navigate(NavigationStrings.LOGIN);
+      };
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={{ flex: 1, flexDirection: 'column', }}>
@@ -53,11 +63,13 @@ const Signup = ({ navigation }) => {
                         </View>
                         <TextInputWithLabel
                             placeHolder='Enter Email'
+                            onChangeText={(userEmail) => setEmail(userEmail)}
                             inputStyle={{ marginBottom: moderateVerticalScale(10) }}
                             keyboardType="email-address"
                         />
                         <TextInputWithLabel
                             placeHolder={'Password'}
+                            onChangeText={(userPassword) => setPassword(userPassword)}
                             secureTextEntry={isVisible}
                             rightIcon={isVisible ? imagePath.icHide : imagePath.icShow}
                             onPressRight={() => setVisible(!isVisible)}
@@ -66,6 +78,7 @@ const Signup = ({ navigation }) => {
 
                         <TextInputWithLabel
                             placeHolder={'Confirm Password'}
+                            onChangeText={(userPassword) => setConfirmPassword(userPassword)}
                             secureTextEntry={CVisible}
                             rightIcon={CVisible ? imagePath.icHide : imagePath.icShow}
                             onPressRight={() => setCVisible(!CVisible)}
@@ -80,6 +93,7 @@ const Signup = ({ navigation }) => {
                             textStyle={{ ...styles.textStyle, ...styles.customTextStyle }}
                             btnStyle={{ ...styles.btnStyle, ...styles.customStyle }}
                             btnText={'Sign Up'}
+                            onPress={() => handleSignup(email,password)}
                         />
                         <TouchableOpacity
                             style={styles.loginSignview}

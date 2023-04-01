@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FlatList, Image, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import CustomHeader from '../../components/CustomHeader';
 import Colors from '../../styles/Colors';
@@ -9,9 +9,11 @@ import CustomPkgBtn from '../../components/CustomPkgBtn';
 import NavigationStrings from '../../constants/NavigationStrings';
 import { useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
+import Loader from '../../components/Loader';
 
 const AddToCart = () => {
     const [count, setCount] = useState(0);
+    const [isLoading, setisLoading] = useState(true);
     const navigation = useNavigation()
     const counter = (type) => {
         if (type == "increment") {
@@ -23,6 +25,13 @@ const AddToCart = () => {
     const moveToScreen = (screen) => {
         navigation.navigate(screen)
     }
+    // LOADING CODE
+    useEffect(() => {
+        setTimeout(() => {
+            setisLoading(false);
+        }, 1000);
+    }),
+        [];
     const renderItem = ({ item, index }) => {
         return (
             <View style={{
@@ -86,36 +95,39 @@ const AddToCart = () => {
     }
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <View style={styles.container}>
-                <CustomHeader
-                    leftImg={imagePath.icBack}
-                    headerTitle={'Items in Cart'}
-                    headerImgStyle={styles.headerImgStyle}
-                />
-                {/* <View style={{ }}> */}
-                <View style={styles.cartItemStyle}>
-                    <FlatList
-                        data={TopItemList}
-                        renderItem={renderItem}
-                        keyExtractor={(item, index) => index.toString()}
-                        ItemSeparatorComponent={() => <View style={{ marginBottom: moderateScale(20) }} />}
+            {isLoading ? <Loader isLoading={isLoading} /> :
+                <View style={styles.container}>
+                    <CustomHeader
+                        leftImg={imagePath.icBack}
+                        headerTitle={'Items in Cart'}
+                        headerImgStyle={styles.headerImgStyle}
                     />
+                    {/* <View style={{ }}> */}
+                    <View style={styles.cartItemStyle}>
+                        <FlatList
+                            data={TopItemList}
+                            renderItem={renderItem}
+                            keyExtractor={(item, index) => index.toString()}
+                            ItemSeparatorComponent={() => <View style={{ marginBottom: moderateScale(20) }} />}
+                        />
+                    </View>
+
+                    <View style={{ flex: 0.5, justifyContent: 'center' }}>
+                        <View style={styles.totalPriceView}>
+                            <Text style={styles.totalPriceHeading}>Total</Text>
+                            <Text style={styles.totalPrice}>Rs.400</Text>
+                        </View>
+                        <CustomPkgBtn
+                            onPress={() => { moveToScreen(NavigationStrings.CHECKOUT) }}
+                            textStyle={{ ...styles.textStyle }}
+                            btnStyle={{ ...styles.btnStyle }}
+                            btnText={'Checkout'}
+                        />
+                    </View>
+                    {/* </View> */}
                 </View>
 
-                <View style={{ flex: 0.5, justifyContent: 'center' }}>
-                    <View style={styles.totalPriceView}>
-                        <Text style={styles.totalPriceHeading}>Total</Text>
-                        <Text style={styles.totalPrice}>Rs.400</Text>
-                    </View>
-                    <CustomPkgBtn
-                        onPress={() => { moveToScreen(NavigationStrings.CHECKOUT) }}
-                        textStyle={{ ...styles.textStyle }}
-                        btnStyle={{ ...styles.btnStyle }}
-                        btnText={'Checkout'}
-                    />
-                </View>
-                {/* </View> */}
-            </View>
+            }
         </SafeAreaView>
     )
 }
