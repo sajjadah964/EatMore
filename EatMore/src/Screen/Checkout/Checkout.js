@@ -1,4 +1,4 @@
-import React, { useState ,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image, SafeAreaView, StyleSheet, Text, View, Modal, Button, TouchableOpacity } from 'react-native'
 import CustomHeader from '../../components/CustomHeader'
 import Colors from '../../styles/Colors'
@@ -10,7 +10,7 @@ import CustomModal from '../../constants/CustomModal';
 import { useNavigation } from '@react-navigation/native';
 import NavigationStrings from '../../constants/NavigationStrings';
 import Loader from '../../components/Loader';
-
+import { RadioButton } from 'react-native-paper';
 const Checkout = () => {
     const navigation = useNavigation();
     const [ModalVisible, setModalVisible] = useState(false);
@@ -31,6 +31,21 @@ const Checkout = () => {
         }, 1000);
     }),
         [];
+    const [paymentMethod, setPaymentMethod] = useState(null);
+    const [textSelected, setTextSelected] = useState(false);
+
+    const selectPaymentMethod = (method) => {
+        setPaymentMethod(method);
+        //   setTextSelected(false);
+    };
+
+    const paymentMethods = [
+        { name: 'Cash On delivery', description: 'Pay in Cash when your order arrives' },
+        { name: 'EasyPaisa Online', description: 'Pay in Cash when your order arrives' },
+        { name: 'JazzCash Online', description: 'Pay in Cash when your order arrives' },
+        { name: 'Borrow', description: 'Pay in Cash when your order arrives' },
+    ];
+
     return (
         <SafeAreaView style={{
             flex: 1
@@ -91,7 +106,61 @@ const Checkout = () => {
                         onButtonPress={toggleModal}
                         onRequestClose={onClose}
                     >
-                        <Text>Some additional content can be added here.</Text>
+                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                            <View
+                                style={{
+                                    backgroundColor: 'white',
+                                    padding: 20,
+                                    // borderRadius: 10,
+                                    // shadowColor: '#000',
+                                    // shadowOffset: { width: 0, height: 2 },
+                                    // shadowOpacity: 0.25,
+                                    // shadowRadius: 4,
+                                    // elevation: 5,
+
+                                }}
+                            >
+                                {paymentMethods.map((method, index) => (
+                                    <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: moderateScale(15), }} key={index}>
+                                        <TouchableOpacity onPress={() => selectPaymentMethod(method.name)}
+                                        >
+                                            <View
+                                                style={{
+                                                    height: moderateScale(30),
+                                                    width: moderateScale(30),
+                                                    borderRadius: moderateScale(30 / 2),
+                                                    borderWidth: 2,
+                                                    borderColor: paymentMethod === method.name ? Colors.primaryColor : Colors.primaryColor,
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    marginRight: moderateScale(20),
+                                                    backgroundColor: paymentMethod === method.name ? 'white' : 'transparent',
+                                                }}
+                                            >
+                                                {paymentMethod === method.name && (
+                                                    <View
+                                                        style={{
+                                                            height: moderateScale(15),
+                                                            width: moderateScale(15),
+                                                            borderRadius: moderateScale(15 / 2),
+                                                            backgroundColor: Colors.primaryColor,
+                                                        }}
+                                                    />
+                                                )}
+                                            </View>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity 
+                                        style={[styles.paymentTextView,
+                                         { backgroundColor: paymentMethod === method.name ? 'white' : 'transparent', }]}
+                                         activeOpacity={0.8}
+                                         >
+                                            <Text style={styles.paymentViewName}>{method.name}</Text>
+                                            <Text style={styles.paymentViewDesc}>{method.description}</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                ))}
+                            </View>
+                        </View>
                     </CustomModal>
 
                     <View style={styles.orderSummaryView}>
@@ -195,6 +264,49 @@ const styles = StyleSheet.create({
         backgroundColor: '#50379E',
         marginTop: moderateVerticalScale(26),
     },
-})
+
+
+    radioButton: {
+        width: 24,
+        height: 24,
+        borderRadius: 12,
+        borderWidth: 2,
+        borderColor: '#000',
+        marginRight: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    radioSelected: {
+        width: 12,
+        height: 12,
+        borderRadius: 6,
+        backgroundColor: '#000',
+    },
+    radioUnselected: {
+        width: 12,
+        height: 12,
+        borderRadius: 6,
+        backgroundColor: '#fff',
+    },
+    paymentTextView: {
+        width: moderateScale(200),
+        height: moderateScale(40),
+        borderRadius: moderateScale(10),
+        borderWidth: 1,
+        borderColor: Colors.primaryColor,
+        padding: moderateScale(6)
+    },
+    paymentViewName: {
+        fontWeight: '600',
+        fontSize: scale(10),
+        color: Colors.primaryColor,
+        marginBottom: moderateVerticalScale(1)
+    },
+    paymentViewDesc: {
+        fontWeight: '600',
+        fontSize: scale(6),
+        color: Colors.primaryColor,
+    }
+});
 
 export default Checkout;

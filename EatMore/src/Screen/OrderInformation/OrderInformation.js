@@ -82,15 +82,15 @@ const OrderInformation = () => {
                     // onPress={() => alert("you alert")}
                     />
 
-                    <CustomModal
+                    {/* <CustomModal
                         visible={ModalVisible}
-                        title="Payment Method"
+                        title="Place Order"
                         buttonText="Done"
                         onButtonPress={toggleModal}
                         onRequestClose={onClose}
                     >
                         <Text>Your Order Will Delivered Soon.</Text>
-                    </CustomModal>
+                    </CustomModal> */}
                 </View>
 
             }

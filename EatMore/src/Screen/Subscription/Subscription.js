@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import { FlatList, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { moderateScale, moderateVerticalScale, scale, } from 'react-native-size-matters';
 import CustomHeader from '../../components/CustomHeader';
 import imagePath from '../../constants/imagePath';
@@ -81,76 +81,80 @@ const Subscription = () => {
     };
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#FEFEFE', }}>
+            <View style={{ paddingHorizontal: moderateScale(26) }}>
+                <CustomHeader
+                    headerTitle={"Subscription"}
+                />
+            </View>
             {isLoading ? <Loader isLoading={isLoading} /> :
-                <View style={styles.container}>
-                    <CustomHeader
-                        headerTitle={"Subscription"}
-                    />
-                    <CustomPkgBtn
-                        btnText={'Weekly Plans'}
-                        textStyle={{ ...styles.textStyle }}
-                        btnStyle={{ ...styles.btnStyle }}
-                    />
-                    <View style={styles.btnView}>
+                <ScrollView>
+                    <View style={styles.container}>
                         <CustomPkgBtn
-                            btnText={'1'}
-                            // textStyle={{ ...styles.textStyle, ...styles.singleTextStyle }}
-                            // btnStyle={{ ...styles.singleBtnStyle }}
-                            onPress={() => { onButtonhandler('1') }}
-                            btnStyle={buttonStyle('1')}
-                            textStyle={textStyle('1')}
+                            btnText={'Weekly Plans'}
+                            textStyle={{ ...styles.textStyle }}
+                            btnStyle={{ ...styles.btnStyle }}
                         />
-                        <CustomPkgBtn
-                            btnText={'2'}
-                            // textStyle={{ ...styles.textStyle, ...styles.singleTextStyle }}
-                            // btnStyle={{ ...styles.singleBtnStyle }}
-                            onPress={() => { onButtonhandler('2') }}
-                            btnStyle={buttonStyle('2')}
-                            textStyle={textStyle('2')}
-                        />
-                        <CustomPkgBtn
-                            btnText={'3'}
-                            // textStyle={{ ...styles.textStyle , ...styles.singleTextStyle }}
-                            // btnStyle={{ ...styles.singleBtnStyle }}
-                            onPress={() => { onButtonhandler('3') }}
-                            btnStyle={buttonStyle('3')}
-                            textStyle={textStyle('3')}
-                        />
-                    </View>
-                    {selectedIndex === '1' ?
-                        <View style={styles.itemListView}>
-                            <FlatList
-                                data={ItemsPlans}
-                                renderItem={renderItem}
-                                keyExtractor={(item, index) => index.toString()}
-                                numColumns={2}
-                                scrollEnabled={true}
-                                showsVerticalScrollIndicator={false}
-                                ItemSeparatorComponent={FlatListItemSeparator}
-                                contentContainerStyle={{ alignItems: 'center' }} // add this line
+                        <View style={styles.btnView}>
+                            <CustomPkgBtn
+                                btnText={'1'}
+                                // textStyle={{ ...styles.textStyle, ...styles.singleTextStyle }}
+                                // btnStyle={{ ...styles.singleBtnStyle }}
+                                onPress={() => { onButtonhandler('1') }}
+                                btnStyle={buttonStyle('1')}
+                                textStyle={textStyle('1')}
+                            />
+                            <CustomPkgBtn
+                                btnText={'2'}
+                                // textStyle={{ ...styles.textStyle, ...styles.singleTextStyle }}
+                                // btnStyle={{ ...styles.singleBtnStyle }}
+                                onPress={() => { onButtonhandler('2') }}
+                                btnStyle={buttonStyle('2')}
+                                textStyle={textStyle('2')}
+                            />
+                            <CustomPkgBtn
+                                btnText={'3'}
+                                // textStyle={{ ...styles.textStyle , ...styles.singleTextStyle }}
+                                // btnStyle={{ ...styles.singleBtnStyle }}
+                                onPress={() => { onButtonhandler('3') }}
+                                btnStyle={buttonStyle('3')}
+                                textStyle={textStyle('3')}
                             />
                         </View>
-                        : null
-                    }
-                    {selectedIndex === '2' ?
-                        <View>
-                            <Text>this is the second day </Text>
-                        </View>
-                        : null
-                    }
-                    {selectedIndex === '3' ?
-                        <View>
-                            <Text>this is the third day </Text>
-                        </View>
-                        : null
-                    }
-                    <CustomPkgBtn
-                        btnText={'Subscribe 2000/Weekly'}
-                        textStyle={{ ...styles.textStyle }}
-                        btnStyle={{ ...styles.btnStyle, ...styles.subscribeBtnStyle }}
-                    />
-                </View>
+                        {selectedIndex === '1' ?
+                            <View style={styles.itemListView}>
+                                <FlatList
+                                    data={ItemsPlans}
+                                    renderItem={renderItem}
+                                    keyExtractor={(item, index) => index.toString()}
+                                    numColumns={2}
+                                    scrollEnabled={true}
+                                    showsVerticalScrollIndicator={false}
+                                    ItemSeparatorComponent={FlatListItemSeparator}
+                                    contentContainerStyle={{ alignItems: 'center' }} // add this line
+                                />
+                            </View>
+                            : null
+                        }
+                        {selectedIndex === '2' ?
+                            <View>
+                                <Text>this is the second day </Text>
+                            </View>
+                            : null
+                        }
+                        {selectedIndex === '3' ?
+                            <View>
+                                <Text>this is the third day </Text>
+                            </View>
+                            : null
+                        }
+                        <CustomPkgBtn
+                            btnText={'Subscribe 2000/Weekly'}
+                            textStyle={{ ...styles.textStyle }}
+                            btnStyle={{ ...styles.btnStyle, ...styles.subscribeBtnStyle }}
+                        />
+                    </View>
+                </ScrollView>
             }
         </SafeAreaView>
     )
@@ -163,7 +167,8 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: moderateScale(26),
         backgroundColor: '#FEFEFE',
-        justifyContent:'space-evenly'
+        // justifyContent:'space-between'
+        paddingTop: moderateVerticalScale(20)
     },
     btnStyle: {
         width: moderateScale(200),
@@ -176,7 +181,7 @@ const styles = StyleSheet.create({
     },
     btnView: {
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-evenly'
     },
     singleBtnStyle: {
         width: moderateScale(95),
@@ -190,7 +195,7 @@ const styles = StyleSheet.create({
         // flex:1,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: moderateVerticalScale(25),
+        marginBottom: moderateVerticalScale(15),
     },
     mainView: {
         borderRadius: moderateScale(8),
@@ -234,5 +239,6 @@ const styles = StyleSheet.create({
     subscribeBtnStyle: {
         width: moderateScale(220),
         height: moderateScale(45),
+        marginBottom: moderateVerticalScale(20)
     }
 })

@@ -50,4 +50,18 @@ export default ItemsPlans = [
         secondItemName: 'Pizza',
         subscriptionDay: 'Day 1'
     },
+    {
+        firstImg: imagePath.icSubBurger,
+        firstItemName: 'Burger',
+        secondImg: imagePath.icSubPizza,
+        secondItemName: 'Pizza',
+        subscriptionDay: 'Day 1'
+    },
+    {
+        firstImg: imagePath.icSubBurger,
+        firstItemName: 'Burger',
+        secondImg: imagePath.icSubPizza,
+        secondItemName: 'Pizza',
+        subscriptionDay: 'Day 1'
+    },
 ]
