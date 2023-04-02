@@ -20,7 +20,7 @@ const Home = () => {
     useEffect(() => {
         setTimeout(() => {
             setisLoading(false);
-        }, 100);
+        }, 1000);
     }, []);
     const navigation = useNavigation()
     const [isFocused, setIsFocused] = useState(false);
@@ -63,6 +63,9 @@ const Home = () => {
             detail: item,
             index, index
         });
+    }
+    const moveToScreen = (screen) => {
+        navigation.navigate(screen)
     }
     const renderItem = ({ item, index }) => {
         // console.log(item)
@@ -134,9 +137,9 @@ const Home = () => {
             {isLoading ? <Loader isLoading={isLoading} /> :
                 <View style={styles.container}>
                     <View style={styles.homeHeaderView}>
-                        <View>
+                        <TouchableOpacity onPress={() => moveToScreen(NavigationStrings.ALL_ORDER)} activeOpacity={0.8}>
                             <Text style={styles.headerTitleStyle}>Menu</Text>
-                        </View>
+                        </TouchableOpacity>
                         <TouchableOpacity
                             onPress={() => logoutData()}
                             activeOpacity={0.7}

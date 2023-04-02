@@ -1,7 +1,7 @@
 import React from "react";
 import TabRoutes from './TabRoutes';
 import NavigationStrings from "../constants/NavigationStrings";
-import { Checkout, ItemsDetails, OrderInformation, } from "../Screen";
+import { AllOrder, Checkout, ItemsDetails, OrderInformation, } from "../Screen";
 export default function (Stack) {
     return (
         <>
@@ -21,6 +21,11 @@ export default function (Stack) {
                 name={NavigationStrings.ORDER_INFORMATION}
                 component={OrderInformation}
             />
+            <Stack.Screen
+                name={NavigationStrings.ALL_ORDER}
+                component={AllOrder}
+            />
+
 
             {/* <Stack.Screen
                 name={NavigationStrings.ADD_TO_CART}

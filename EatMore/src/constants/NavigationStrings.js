@@ -4,6 +4,7 @@ export default {
     SIGNUP: 'Signup',
     TABROUTES: 'TabRoutes',
     HOME: 'Home',
+    ALL_ORDER:'AllOrder',
     ITEMS_DETAILS: 'ItemsDetails',
     PROFILE: 'Profile',
     SEARCH: 'Search',
@@ -16,6 +17,5 @@ export default {
     SEARCH_STACK: 'SearchStack',
     CART_STACK: 'CartStack',
     SUBSCRIPTION_STACK: 'SubscriptionStack',
-
 
 }
