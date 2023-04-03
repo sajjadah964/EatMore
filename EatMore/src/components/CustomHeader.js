@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        backgroundColor:'#FEFEFE'
+        // backgroundColor:'#FEFEFE'
 
     },
     imgStyle: {
